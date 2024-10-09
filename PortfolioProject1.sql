@@ -20,7 +20,7 @@ order by 1,2
 Select Location, date, total_cases, total_deaths, (Total_deaths/nullif(total_cases,0)*100) as DeathPercentage
 From PortfolioProject1..CovidDeaths
 Where location like '%india%'
-Where continent is not null
+and continent is not null
 order by 1,2
 
 
@@ -29,7 +29,7 @@ order by 1,2
 Select Location, date, population, total_deaths, (Total_deaths/nullif(population,0)*100) as DeathPercentage
 From PortfolioProject1..CovidDeaths
 Where location like '%india%'
-Where continent is not null
+and continent is not null
 order by 1,2
 
 --Looking at total cases vs Population
@@ -38,7 +38,7 @@ order by 1,2
 Select Location, date, population, total_cases, (Total_cases/nullif(population,0)*100) as PercentagePopulationInfected
 From PortfolioProject1..CovidDeaths
 Where location like '%india%'
-Where continent is not null
+and continent is not null
 order by 1,2
 
 
@@ -68,7 +68,7 @@ From PortfolioProject1..CovidDeaths
 --Where location like '%india%
 Where continent is not null
 Group by continent
-order by TotalDeathCount desc
+order by TotalDeathCount 
 
 
 --Dividing this by CONTINENT
@@ -162,8 +162,8 @@ Join PortfolioProject1..CovidVaccine vac
   USE PortfolioProject1
  --Creating View to store data for data visualization
  
- Create View PercentPopulationVaccinated as 
- Select dea.continent,dea.location, dea.date, dea.population, vac.new_vaccinations, SUM(CONVERT(bigint, ISNULL(vac.new_vaccinations,0))) OVER (Partition by dea.location Order by dea.location,dea.Date) as Total_Vaccinations_as_of_Date
+Create View PercentPopulationVaccinated as 
+Select dea.continent,dea.location, dea.date, dea.population, vac.new_vaccinations, SUM(CONVERT(bigint, ISNULL(vac.new_vaccinations,0))) OVER (Partition by dea.location Order by dea.location,dea.Date) as Total_Vaccinations_as_of_Date
 From PortfolioProject1..CovidDeaths dea
 Join PortfolioProject1..CovidVaccine vac
  On dea.location = vac.location
