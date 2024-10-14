@@ -1,4 +1,4 @@
-COVID-19 Data Analysis and Visualization
+COVID-19 Mortality Analysis
 
 This project aims to analyze and visualize COVID-19 data, focusing on key metrics such as total cases, deaths, and vaccination rates across different locations and continents. The analysis leverages SQL to query and manipulate data from COVID-19 datasets, providing insights into the impact of the pandemic on global health.
 
